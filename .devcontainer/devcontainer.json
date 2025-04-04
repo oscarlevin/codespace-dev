@@ -1,0 +1,56 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {},
+  "postCreateCommand": "git config --global --add safe.directory $(pwd) && pip install pretext[all]",
+    // Port forwarding
+  // ---------------
+  // This is needed by the CodeChat Server.
+  "forwardPorts": [
+    // The port used for a Thrift connection between the VSCode CodeChat
+    // extension and the CodeChat Server.
+    27376,
+    // The port used for an HTTP connection from the CodeChat Client to
+    // the CodeChat Server.
+    27377,
+    // The port used by a websocket connection between the CodeChat
+    // Server and the CodeChat Client.
+    27378
+  ],
+  // See the [docs](https://containers.dev/implementors/json_reference/#port-attributes).
+  "portsAttributes": {
+    "27376": {
+      "label": "VSCode extension <-> CodeChat Server",
+      "requireLocalPort": true
+    },
+    "27377": {
+      "label": "CodeChat Client",
+      "requireLocalPort": true
+    },
+    "27378": {
+      "label": "CodeChat Client<->Server websocket",
+      "requireLocalPort": true
+      // This port needs to be public; however, there's no way to specify port visibility here. See `server.py` in the CodeChat Server for details.
+    }
+  },
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["source/main.ptx"]
+    },
+    "vscode": {
+      "settings": {
+        "editor.quickSuggestions": {
+          "other": "off"
+        },
+        "editor.snippetSuggestions": "top",
+        "xml.validation.enabled": false,
+        "CodeChat.CodeChatServer.Command": "CodeChat_Server"
+      },
+      "extensions": [
+        "oscarlevin.pretext-tools",
+        "CodeChat.codechat"
+      ]
+    }
+  }
+}
