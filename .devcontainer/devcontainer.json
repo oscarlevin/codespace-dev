@@ -1,7 +1,15 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {},
-  "postCreateCommand": "git config --global --add safe.directory $(pwd) && pip install pretext[all]",
+  
+  "postCreateCommand": {
+    "install pretext": "bash ./.devcontainer/installPretext.sh",
+    "install pandoc": "bash ./.devcontainer/installPandoc.sh",
+    "install latex": "bash ./.devcontainer/installLatex.sh",
+    "install sagemath": "bash ./.devcontainer/installSage.sh",
+    "all done": "echo 'all done.'"
+    },
+    
     // Port forwarding
   // ---------------
   // This is needed by the CodeChat Server.
