@@ -7,17 +7,36 @@
 wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 tlmgr install \
-    smartdiagram \
-    pgfplots \
-    xstring \
+    adjustbox \
+    cancel \
     circuitikz \
-    snapshot \
     colortbl \
+    enumitem \
+    extpfeil \
+    fontawesome5 \
+    imakeidx \
+    listings \
+    listingsutf8 \
+    mathtools \
+    menukeys \
+    microtype \
+    nicematrix \
+    pdfcol \
+    pgfplots \
+    polyglossia \
+    realscripts \
+    relsize \
+    siunitx \
+    smartdiagram \
+    snapshot \
+    stmaryrd \
     tcolorbox \
     tikzfill \
-    pdfcol \
+    titlesec \
+    ulem \
+    upquote \
+    xfrac \
     xltxtra \
-    realscripts \
-    fontawesome5
+    xstring 
 
 tlmgr path add
