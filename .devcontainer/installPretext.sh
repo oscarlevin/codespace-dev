@@ -19,7 +19,7 @@ pip install codechat-server --break-system-packages
 playwright install-deps
 
 playwright install
-s
+
 # Install mermaid for diagrams
 npm install -g @mermaid-js/mermaid-cli
 

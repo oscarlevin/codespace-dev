@@ -8,22 +8,34 @@ wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 tlmgr install \
     adjustbox \
+    amscdx \
+    braket \
+    bussproofs \
     cancel \
+    cases \
     circuitikz \
     colortbl \
     enumitem \
     extpfeil \
     fontawesome5 \
+    gensymb \
     imakeidx \
     listings \
     listingsutf8 \
     mathtools \
     menukeys \
+    mhchem \
     microtype \
+    musicography \
     nicematrix \
     pdfcol \
+    pdfpages \
+    pdflscape \
     pgfplots \
+    phaistos \
+    physics \
     polyglossia \
+    pstricks \
     realscripts \
     relsize \
     siunitx \
@@ -35,8 +47,19 @@ tlmgr install \
     titlesec \
     ulem \
     upquote \
+    was \
     xfrac \
     xltxtra \
     xstring 
 
 tlmgr path add
+
+# Add fontawesome 5 fonts
+VERSION="5.15.4"
+wget https://use.fontawesome.com/releases/v${VERSION}/fontawesome-free-${VERSION}-desktop.zip
+unzip fontawesome-free-${VERSION}-desktop.zip
+mkdir ~/.fonts
+cp fontawesome-free-${VERSION}-desktop/*.otf ~/.fonts
+fc-cache -f -v
+rm fontawesome-free-${VERSION}-desktop.zip
+rm -r fontawesome-free-${VERSION}-desktop
