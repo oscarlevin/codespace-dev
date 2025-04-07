@@ -10,12 +10,20 @@ tlmgr install adjustbox amscdx bold-extra braket bussproofs cancel carlisle case
 
 tlmgr path add
 
-# Add fontawesome 5 fonts
-VERSION="5.15.4"
-wget https://use.fontawesome.com/releases/v${VERSION}/fontawesome-free-${VERSION}-desktop.zip
-unzip fontawesome-free-${VERSION}-desktop.zip
-mkdir ~/.fonts
-cp fontawesome-free-${VERSION}-desktop/*.otf ~/.fonts
+#  Ensure fonts provided by TinyTeX are available, as suggested in the pretext guide
+fontconfig="<?xml version=\"1.0\"?>
+<!DOCTYPE fontconfig SYSTEM \"fonts.dtd\">
+<fontconfig>
+  <dir>~/.TinyTeX/texmf-dist/fonts</dir>
+  <dir>~/.TinyTeX/texmf-local/fonts</dir>
+</fontconfig>"
+
+fontconfig_path="/etc/fonts/conf.d/09-texlive-fonts.conf"
+if [ ! -f "$fontconfig_path" ]; then
+    echo "Creating fontconfig file at $fontconfig_path"
+    echo "$fontconfig" | sudo tee "$fontconfig_path" > /dev/null
+else
+    echo "Fontconfig file already exists at $fontconfig_path"
+fi
+# Update font cache
 fc-cache -f -v
-rm fontawesome-free-${VERSION}-desktop.zip
-rm -r fontawesome-free-${VERSION}-desktop
